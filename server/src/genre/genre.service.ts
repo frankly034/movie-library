@@ -1,6 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { IPaginationOptions, paginate } from 'nestjs-typeorm-paginate';
 
 import Genre from './genre.entity';
 import CreateGenreDto from './dto/createGenre.dto';
@@ -27,6 +28,12 @@ class GenreService {
     }
 
     return newGenre;
+  }
+
+  async getAll(options: IPaginationOptions = { limit: 10, page: 1 }) {
+    return paginate<Genre>(this.genreRepository, options, {
+      order: { name: 'ASC' },
+    });
   }
 }
 

@@ -5,6 +5,7 @@ import Genre from '../genre.entity';
 import GenreService from '../genre.service';
 import { expectedGenreMock, genreMockData } from '../../utils/mocks/genre.mock';
 import UniqueViolationError from '../../utils/mocks/uniqueViolationException';
+import paginateRepositoryMock from '../../utils/mocks/paginateRepositoryMock';
 
 describe('Genere Service', () => {
   let genreService: GenreService;
@@ -21,7 +22,11 @@ describe('Genere Service', () => {
         GenreService,
         {
           provide: getRepositoryToken(Genre),
-          useValue: { create, save },
+          useValue: {
+            create,
+            save,
+            ...paginateRepositoryMock([expectedGenreMock]),
+          },
         },
       ],
     }).compile();
@@ -61,6 +66,17 @@ describe('Genere Service', () => {
           'An error occured',
         );
       });
+    });
+  });
+
+  describe('when fetching all genres', () => {
+    it('should return a paginated list of genres', async () => {
+      const allGenres = await genreService.getAll();
+
+      expect(allGenres.items).toEqual([expectedGenreMock]);
+      expect(allGenres.meta.currentPage).toEqual(1);
+      expect(allGenres.meta.itemsPerPage).toEqual(10);
+      expect(allGenres.meta.itemCount).toEqual(1);
     });
   });
 });
