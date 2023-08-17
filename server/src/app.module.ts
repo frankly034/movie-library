@@ -5,6 +5,9 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 
 import DatabaseModule from './database/database.module';
+import { APP_FILTER } from '@nestjs/core';
+
+import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilters';
 
 @Module({
   imports: [
@@ -21,6 +24,12 @@ import DatabaseModule from './database/database.module';
     DatabaseModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: CustomExceptionFilter,
+    },
+  ],
 })
 export class AppModule {}
