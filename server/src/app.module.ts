@@ -3,11 +3,11 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-
-import DatabaseModule from './database/database.module';
 import { APP_FILTER } from '@nestjs/core';
 
+import DatabaseModule from './database/database.module';
 import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilters';
+import GenereModule from './genre/genre.module';
 
 @Module({
   imports: [
@@ -22,6 +22,7 @@ import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilter
       }),
     }),
     DatabaseModule,
+    GenereModule,
   ],
   controllers: [AppController],
   providers: [
