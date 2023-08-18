@@ -2,12 +2,14 @@ import * as Joi from '@hapi/joi';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
-import { APP_FILTER } from '@nestjs/core';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 import DatabaseModule from './database/database.module';
 import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilters';
 import GenereModule from './genre/genre.module';
+import CustomThrottlerGuard from './common/guards/customThrottler.guard';
 
 @Module({
   imports: [
@@ -21,6 +23,14 @@ import GenereModule from './genre/genre.module';
         PORT: Joi.number(),
       }),
     }),
+    ThrottlerModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        ttl: config.get('THROTTLE_TTL'),
+        limit: config.get('THROTTLE_LIMIT'),
+      }),
+    }),
     DatabaseModule,
     GenereModule,
   ],
@@ -30,6 +40,10 @@ import GenereModule from './genre/genre.module';
     {
       provide: APP_FILTER,
       useClass: CustomExceptionFilter,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: CustomThrottlerGuard,
     },
   ],
 })
