@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         autoLoadEntities: true,
+        cache: { alwaysEnabled: true, duration: 30000 },
         type: 'postgres',
         logNotifications: true,
         host: configService.get('POSTGRES_HOST'),

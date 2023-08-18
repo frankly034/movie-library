@@ -21,7 +21,12 @@ import { ResponseFormatInterceptor } from './common/interceptors/responseFormat.
         POSTGRES_USER: Joi.string().required(),
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_DB: Joi.string().required(),
+        PGADMIN_DEFAULT_EMAIL: Joi.string().required(),
+        PGADMIN_DEFAULT_PASSWORD: Joi.string().required(),
         PORT: Joi.number(),
+        THROTTLE_TTL: Joi.number().required(),
+        THROTTLE_LIMIT: Joi.number().required(),
+        TMDB_BASEURL: Joi.string().required(),
       }),
     }),
     ThrottlerModule.forRootAsync({

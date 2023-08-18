@@ -2,12 +2,14 @@ import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 import GenreService from '../genre.service';
 import { expectedGenreMock } from '../../utils/mocks/genre.mock';
 import Genre from '../genre.entity';
 import GenreController from '../genre.controller';
 import paginateRepositoryMock from '../../utils/mocks/paginateRepositoryMock';
+import mockedConfigService from '../../utils/mocks/config.service';
 
 describe('Genre Controller', () => {
   let app: INestApplication;
@@ -20,6 +22,10 @@ describe('Genre Controller', () => {
         {
           provide: getRepositoryToken(Genre),
           useValue: { ...paginateRepositoryMock([expectedGenreMock]) },
+        },
+        {
+          provide: ConfigService,
+          useValue: mockedConfigService,
         },
       ],
     }).compile();
