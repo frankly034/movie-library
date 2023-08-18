@@ -3,13 +3,14 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ThrottlerModule } from '@nestjs/throttler';
 
 import DatabaseModule from './database/database.module';
 import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilters';
 import GenereModule from './genre/genre.module';
 import CustomThrottlerGuard from './common/guards/customThrottler.guard';
+import { ResponseFormatInterceptor } from './common/interceptors/responseFormat.interceptor';
 
 @Module({
   imports: [
@@ -44,6 +45,10 @@ import CustomThrottlerGuard from './common/guards/customThrottler.guard';
     {
       provide: APP_GUARD,
       useClass: CustomThrottlerGuard,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ResponseFormatInterceptor,
     },
   ],
 })
