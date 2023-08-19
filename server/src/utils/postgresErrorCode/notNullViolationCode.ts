@@ -1,0 +1,1 @@
+export const NOT_NULL_VIOLATION_CODE = '23502';

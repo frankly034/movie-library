@@ -1,15 +1,16 @@
 import * as Joi from '@hapi/joi';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ThrottlerModule } from '@nestjs/throttler';
 
+import { AppController } from './app.controller';
 import DatabaseModule from './database/database.module';
-import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilters';
 import GenereModule from './genre/genre.module';
+import MovieModule from './movie/movie.module';
 import CustomThrottlerGuard from './common/guards/customThrottler.guard';
+import { CustomExceptionFilter } from './common/exceptions/CustomExceptionFilters';
 import { ResponseFormatInterceptor } from './common/interceptors/responseFormat.interceptor';
 
 @Module({
@@ -27,6 +28,7 @@ import { ResponseFormatInterceptor } from './common/interceptors/responseFormat.
         THROTTLE_TTL: Joi.number().required(),
         THROTTLE_LIMIT: Joi.number().required(),
         TMDB_BASEURL: Joi.string().required(),
+        TMDB_BASE_IMAGE_URL: Joi.string().required(),
       }),
     }),
     ThrottlerModule.forRootAsync({
@@ -39,6 +41,7 @@ import { ResponseFormatInterceptor } from './common/interceptors/responseFormat.
     }),
     DatabaseModule,
     GenereModule,
+    MovieModule,
   ],
   controllers: [AppController],
   providers: [

@@ -11,11 +11,13 @@ import {
 import paginateRepositoryMock from '../../utils/mocks/paginateRepositoryMock';
 import mockedConfigService from '../../utils/mocks/config.service';
 import UniqueViolationError from '../../utils/mocks/uniqueViolationException';
+import TMDBApiService from '../../common/api/tmdbApi.service';
 
 jest.mock('axios');
 
 describe('Genere Service', () => {
   let genreService: GenreService;
+  let tmdbApiService: TMDBApiService;
 
   let create: jest.Mock;
   let findBy: jest.Mock;
@@ -42,10 +44,15 @@ describe('Genere Service', () => {
           provide: ConfigService,
           useValue: mockedConfigService,
         },
+        {
+          provide: TMDBApiService,
+          useValue: { fetchGenresFromTMDB: jest.fn() },
+        },
       ],
     }).compile();
 
     genreService = module.get<GenreService>(GenreService);
+    tmdbApiService = module.get<TMDBApiService>(TMDBApiService);
   });
 
   describe('when fetching all genres', () => {
@@ -74,14 +81,14 @@ describe('Genere Service', () => {
   describe('when loading genre data from TMDB', () => {
     beforeEach(() => {
       jest
-        .spyOn(genreService, 'fetchGenresFromTMDB')
+        .spyOn(tmdbApiService, 'fetchGenresFromTMDB')
         .mockResolvedValue(mockTMBDGenres);
     });
     it('should load and save genres from TMDB', async () => {
       create.mockReturnValue(mockTMBDGenres);
       save.mockResolvedValue(mockTMBDGenres);
 
-      const result = await genreService.loadGenreFromTMDB();
+      const result = await genreService.seedGenreFromTMDB();
 
       expect(result).toEqual(mockTMBDGenres);
     });
@@ -92,7 +99,7 @@ describe('Genere Service', () => {
         new UniqueViolationError('Genre with name or tmbdId already exists'),
       );
 
-      await expect(genreService.loadGenreFromTMDB()).rejects.toThrowError(
+      await expect(genreService.seedGenreFromTMDB()).rejects.toThrowError(
         'Genre with name or tmbdId already exists',
       );
     });
@@ -101,7 +108,7 @@ describe('Genere Service', () => {
       create.mockReturnValue([]);
       save.mockRejectedValue(new Error());
 
-      await expect(genreService.loadGenreFromTMDB()).rejects.toThrowError(
+      await expect(genreService.seedGenreFromTMDB()).rejects.toThrowError(
         'An error occured',
       );
     });

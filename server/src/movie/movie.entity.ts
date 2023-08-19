@@ -6,10 +6,6 @@ import { IsString } from 'class-validator';
 
 @Entity()
 export class Movie extends BaseAbstractEntity {
-  @Column('int', { unique: true, nullable: false })
-  @IsString({ message: 'tmbdId is required' })
-  public tmbdId: number;
-
   @Column({ nullable: false })
   @IsString({ message: 'Title is required' })
   public title: string;
@@ -27,9 +23,9 @@ export class Movie extends BaseAbstractEntity {
   public popularity: number;
 
   @Column()
-  public poasterPath: string;
+  public posterPath: string;
 
-  @Column('date')
+  @Column('date', { nullable: true })
   public releaseDate: string;
 
   @OneToMany(() => Genre, (genre) => genre.movie)
