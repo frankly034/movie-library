@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
-import { ILike, Repository } from 'typeorm';
+import { ILike, In, Repository } from 'typeorm';
 import { IPaginationOptions, paginate } from 'nestjs-typeorm-paginate';
 
 import Movie from './movie.entity';
@@ -29,25 +29,35 @@ class MovieService {
   async findAll(
     options: IPaginationOptions = { limit: 10, page: 1 },
     search = '',
+    genres = [],
   ) {
     return paginate<Movie>(this.movieRepository, options, {
       order: { popularity: 'DESC' },
-      where: { title: ILike(`%${search}%`) },
+      where: {
+        title: ILike(`%${search}%`),
+        ...(genres.length && { genres: { id: In(genres) } }),
+      },
       relations: { genres: true },
     });
   }
 
-  public async saveMovies(newMovies: MappedMovie[]): Promise<Movie[]> {
-    const newMovieList = this.movieRepository.create(newMovies);
+  async findOne(id: string) {
+    return this.movieRepository.findOne({
+      where: { id },
+      relations: { genres: true },
+    });
+  }
 
+  public async saveMovies(mappedMovies: MappedMovie[]): Promise<Movie[]> {
+    const newMovies = this.movieRepository.create(mappedMovies);
     try {
-      await this.movieRepository.save(newMovieList);
-      return newMovieList;
+      await this.movieRepository.save(newMovies);
+      return newMovies;
     } catch (error) {
       if (error?.code === NOT_NULL_VIOLATION_CODE) {
         this.logger.log(
-          `Saving movies failed with NOT_NULL_VIOLATION_CODE from ${JSON.stringify(
-            newMovieList,
+          `Saving movies failed with NOT_NULL_VIOLATION from ${JSON.stringify(
+            mappedMovies,
           )}`,
         );
         throw new CustomBadRequestException('Title is required');
@@ -57,14 +67,20 @@ class MovieService {
     }
   }
 
-  async loadMoviesFromTMDB(genreLinkedList: GenreLinkedList, pages = 100) {
+  async seedMoviesFromTMDB(genreLinkedList: GenreLinkedList, pages = 100) {
+    this.logger.log(`Seeding about ${pages * 20} records. Please be patient.`);
+
     for (let page = 1; page <= pages; page++) {
-      const movieList = await this.tmdbApiService.fetchMoviesFromTMDB(
+      const mappedMovieList = await this.tmdbApiService.fetchMoviesFromTMDB(
         genreLinkedList,
         page,
       );
+
       try {
-        await this.saveMovies(movieList);
+        await this.saveMovies(mappedMovieList);
+
+        this.logger.log(`${((page / pages) * 100).toFixed(2)}% done`);
+
         await sleep(1000);
       } catch (error) {
         this.logger.error('Failed while loading movies from TMDB');

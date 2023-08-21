@@ -1,8 +1,8 @@
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
+import { IsString } from 'class-validator';
 
 import BaseAbstractEntity from '../common/entity/base.entity';
 import Genre from '../genre/genre.entity';
-import { IsString } from 'class-validator';
 
 @Entity()
 export class Movie extends BaseAbstractEntity {
@@ -28,7 +28,8 @@ export class Movie extends BaseAbstractEntity {
   @Column('date', { nullable: true })
   public releaseDate: string;
 
-  @OneToMany(() => Genre, (genre) => genre.movie)
+  @ManyToMany(() => Genre)
+  @JoinTable()
   public genres: Genre[];
 }
 

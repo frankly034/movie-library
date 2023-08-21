@@ -83,14 +83,14 @@ describe('Movie Service', () => {
         .spyOn(tmdbApiService, 'fetchMoviesFromTMDB')
         .mockResolvedValue([]);
 
-      await movieService.loadMoviesFromTMDB(genreLinkedListMock, 1);
+      await movieService.seedMoviesFromTMDB(genreLinkedListMock, 1);
 
       expect(fetchMoviesFromTMDBSpy).toHaveBeenCalledTimes(1);
     });
 
     it('should save the movies', async () => {
       const saveMoviesSpy = jest.spyOn(movieService, 'saveMovies');
-      await movieService.loadMoviesFromTMDB(genreLinkedListMock, 1);
+      await movieService.seedMoviesFromTMDB(genreLinkedListMock, 1);
 
       expect(saveMoviesSpy).toHaveBeenCalledTimes(1);
     });
