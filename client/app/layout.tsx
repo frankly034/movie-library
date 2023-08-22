@@ -4,6 +4,8 @@ import { FunctionComponent, ReactNode } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
+import StyledComponentsRegistry from "./Registry";
+
 const inter = Inter({ subsets: ["latin"] });
 
 interface RootLayoutProps {
@@ -17,7 +19,9 @@ export const metadata: Metadata = {
 
 const RootLayout: FunctionComponent<RootLayoutProps> = ({ children }) => (
   <html lang="en">
-    <body className={inter.className}>{children}</body>
+    <StyledComponentsRegistry>
+      <body className={inter.className}>{children}</body>
+    </StyledComponentsRegistry>
   </html>
 );
 
