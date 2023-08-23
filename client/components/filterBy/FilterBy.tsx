@@ -35,7 +35,7 @@ const FilterBy: FunctionComponent<FilterByProps> = ({
           {search}
         </ClickableTagWithCloseIcon>
       )}
-      {genres.map((genre) => (
+      {genres?.map((genre) => (
         <ClickableTagWithCloseIcon onClick={onClickTag}>
           {genre.name}
         </ClickableTagWithCloseIcon>

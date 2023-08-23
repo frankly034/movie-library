@@ -45,3 +45,17 @@ export const Default: Story = {
     search: "Spider",
   },
 };
+
+export const WithoutSearch: Story = {
+  args: {
+    genres,
+    onClickTag: () => alert("You clicked a tag"),
+  },
+};
+
+export const WithoutTags: Story = {
+  args: {
+    onClickTag: () => alert("You clicked a tag"),
+    search: "Spider",
+  },
+};

@@ -10,3 +10,4 @@ export { default as Ratings } from "./ratings";
 export { default as Heading } from "./heading";
 export { default as Filter } from "./filter";
 export { default as FilterBy } from "./filterBy";
+export { default as MovieList } from "./movieList";
