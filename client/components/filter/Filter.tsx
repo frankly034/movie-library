@@ -5,7 +5,7 @@ import { FunctionComponent } from "react";
 import styled from "styled-components";
 import { ClickableTag, SearchInput } from "..";
 
-type SearchBarProps = {
+type FilterProps = {
   genres: Genre[];
   onTagClick: (tag: Genre) => void;
   onSearchClick: () => void;
@@ -23,7 +23,7 @@ const TagsContainer = styled.div`
   overflow-y: scroll;
 `;
 
-const SearchBar: FunctionComponent<SearchBarProps> = ({
+const Filter: FunctionComponent<FilterProps> = ({
   genres,
   onSearchClick,
   onTagClick,
@@ -45,4 +45,4 @@ const SearchBar: FunctionComponent<SearchBarProps> = ({
   );
 };
 
-export default SearchBar;
+export default Filter;

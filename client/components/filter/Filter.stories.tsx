@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import SearchBar from ".";
-import Genre from "@/models/genre";
+import Filter from ".";
+import Genre from "../../models/genre";
 
 const genres = [
   {
@@ -30,14 +30,14 @@ const genres = [
   },
 ];
 
-const meta: Meta<typeof SearchBar> = {
-  title: "Components/Search Bar",
-  component: SearchBar,
+const meta: Meta<typeof Filter> = {
+  title: "Components/Filter",
+  component: Filter,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof SearchBar>;
+type Story = StoryObj<typeof Filter>;
 
 export const Default: Story = {
   args: {

@@ -8,4 +8,5 @@ export { default as Genres } from "./genres";
 export { default as MovieCard } from "./movieCard";
 export { default as Ratings } from "./ratings";
 export { default as Heading } from "./heading";
-export { default as SearchBar } from "./searchBar";
+export { default as Filter } from "./filter";
+export { default as FilterBy } from "./filterBy";

@@ -1,19 +1,23 @@
 import styled from "styled-components";
-import { ComponentProps, FunctionComponent } from "react";
+import { ComponentProps, FunctionComponent, ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 import { ClickableTag } from "..";
 
 interface ClickableTagWithCloseIconProps
-  extends ComponentProps<typeof ClickableTag> {}
+  extends ComponentProps<typeof ClickableTag> {
+  addonBefore?: ReactNode;
+}
 
 const ClickableTagWithCloseIcon: FunctionComponent<
   ClickableTagWithCloseIconProps
-> = ({ children, onClick }) => {
+> = ({ children, onClick, addonBefore }) => {
   return (
     <Container onClick={onClick}>
-      {children} <FontAwesomeIcon icon={faClose} />
+      {addonBefore}
+      {children}
+      <FontAwesomeIcon icon={faClose} />
     </Container>
   );
 };
