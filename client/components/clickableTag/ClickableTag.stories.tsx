@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import ClickableTag from "./ClickableTag";
 
 const meta: Meta<typeof ClickableTag> = {
-  title: "Components/ClickableTag",
+  title: "Components/Clickable Tag",
   component: ClickableTag,
 };
 

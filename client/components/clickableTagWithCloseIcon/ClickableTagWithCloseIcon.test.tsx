@@ -1,8 +1,8 @@
 import { fireEvent, render } from "@testing-library/react";
 
-import ClickableTag from ".";
+import ClickableTagWithCloseIcon from ".";
 
-describe("Component - ClickableTag", () => {
+describe("Component - ClickableTagWithCloseIcon", () => {
   let handleClick: jest.Mock;
 
   beforeEach(() => {
@@ -11,21 +11,27 @@ describe("Component - ClickableTag", () => {
 
   it("should render component", () => {
     const { container } = render(
-      <ClickableTag onClick={handleClick}>Action</ClickableTag>
+      <ClickableTagWithCloseIcon onClick={handleClick}>
+        Action
+      </ClickableTagWithCloseIcon>
     );
     expect(container).toMatchSnapshot();
   });
 
   it("should render button component", () => {
     const { getByRole } = render(
-      <ClickableTag onClick={handleClick}>Adventure</ClickableTag>
+      <ClickableTagWithCloseIcon onClick={handleClick}>
+        Adventure
+      </ClickableTagWithCloseIcon>
     );
     expect(getByRole("button")).toBeTruthy;
   });
 
   it("should fire the onClick function when clicked", () => {
     const { getByRole } = render(
-      <ClickableTag onClick={handleClick}>{"Click Me!"}</ClickableTag>
+      <ClickableTagWithCloseIcon onClick={handleClick}>
+        {"Click Me!"}
+      </ClickableTagWithCloseIcon>
     );
 
     fireEvent.click(getByRole("button"));
