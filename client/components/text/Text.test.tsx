@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 
 import Text from ".";
 
-describe("Component - Title", () => {
+describe("Component - Text", () => {
   it("should renders text component", () => {
     const { container } = render(<Text>{"Gift a friend this holiday"}</Text>);
     expect(container).toMatchSnapshot();

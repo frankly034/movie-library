@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - DisplayTag should renders the component 1`] = `
+<div>
+  <span
+    class="sc-bcPKhP djlObm"
+  >
+    Horror
+  </span>
+</div>
+`;
