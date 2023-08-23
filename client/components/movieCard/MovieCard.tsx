@@ -5,9 +5,7 @@ import Image from "next/image";
 import { FunctionComponent } from "react";
 
 import Movie from "../../models/movie";
-import { Title } from "..";
-import Ratings from "../ratings/Ratings";
-import Genres from "../genres/Genres";
+import { Genres, Ratings, Title } from "..";
 
 type MovieCardProps = {
   movie: Movie;
