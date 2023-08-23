@@ -1,15 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Tag from "./Tag";
+import ClickableTag from "./ClickableTag";
 
-const meta: Meta<typeof Tag> = {
-  title: "Components/Tag",
-  component: Tag,
+const meta: Meta<typeof ClickableTag> = {
+  title: "Components/ClickableTag",
+  component: ClickableTag,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Tag>;
+type Story = StoryObj<typeof ClickableTag>;
 
 export const Default: Story = {
   args: {

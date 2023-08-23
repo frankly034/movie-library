@@ -1,7 +1,8 @@
 import { fireEvent, render } from "@testing-library/react";
 
-import Tag from ".";
-describe("Component - Title", () => {
+import ClickableTag from ".";
+
+describe("Component - ClickableTag", () => {
   let handleClick: () => void;
 
   beforeEach(() => {
@@ -9,18 +10,22 @@ describe("Component - Title", () => {
   });
 
   it("should render component", () => {
-    const { container } = render(<Tag onClick={handleClick}>Action</Tag>);
+    const { container } = render(
+      <ClickableTag onClick={handleClick}>Action</ClickableTag>
+    );
     expect(container).toMatchSnapshot();
   });
 
   it("should render button component", () => {
-    const { getByRole } = render(<Tag onClick={handleClick}>Adventure</Tag>);
+    const { getByRole } = render(
+      <ClickableTag onClick={handleClick}>Adventure</ClickableTag>
+    );
     expect(getByRole("button")).toBeTruthy;
   });
 
   it("should fire the onClick function when clicked", () => {
     const { getByRole } = render(
-      <Tag onClick={handleClick}>{"Click Me!"}</Tag>
+      <ClickableTag onClick={handleClick}>{"Click Me!"}</ClickableTag>
     );
 
     fireEvent.click(getByRole("button"));

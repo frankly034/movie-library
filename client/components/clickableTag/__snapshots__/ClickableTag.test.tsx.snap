@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - Title should render component 1`] = `
+exports[`Component - ClickableTag should render component 1`] = `
 <div>
   <button
     class="sc-bcPKhP TrbCn"
