@@ -4,3 +4,6 @@ export { default as SearchInput } from "./searchInput";
 export { default as TagLabel } from "./tagLabel";
 export { default as Text } from "./text";
 export { default as Title } from "./title";
+export { default as Genres } from "./genres";
+export { default as MovieCard } from "./movieCard";
+export { default as Ratings } from "./ratings";
