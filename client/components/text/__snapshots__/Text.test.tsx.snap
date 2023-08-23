@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - Title should renders text component 1`] = `
+<div>
+  <p
+    class="sc-bcPKhP gGfpGg"
+  >
+    Gift a friend this holiday
+  </p>
+</div>
+`;

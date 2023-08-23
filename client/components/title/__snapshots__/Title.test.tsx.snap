@@ -3,7 +3,7 @@
 exports[`Component - Title renders title component 1`] = `
 <div>
   <h1
-    class="sc-bcPKhP kKQCVF"
+    class="sc-bcPKhP gGePeu"
   >
     Gift a friend this holiday
   </h1>

@@ -7,4 +7,9 @@ describe("Component - Title", () => {
     const { container } = render(<Title>{"Gift a friend this holiday"}</Title>);
     expect(container).toMatchSnapshot();
   });
+
+  it("should render a heading component", () => {
+    const { getByRole } = render(<Title>{"Gift a friend this holiday"}</Title>);
+    expect(getByRole("heading")).toBeTruthy;
+  });
 });
