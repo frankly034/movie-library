@@ -8,7 +8,7 @@ describe("Component - Title", () => {
     expect(container).toMatchSnapshot();
   });
 
-  it("should render component in a paragraph", () => {
+  it("should render text", () => {
     const { getByText } = render(<Text>{"Hello world"}</Text>);
     expect(getByText("Hello world")).toBeTruthy;
   });
