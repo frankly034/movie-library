@@ -42,7 +42,7 @@ type Story = StoryObj<typeof Filter>;
 export const Default: Story = {
   args: {
     genres,
-    onSearchClick: () => null,
+    onSearch: () => null,
     onTagClick: (genre: Genre) => alert(`You selected ${genre.name} 🤩`),
   },
 };

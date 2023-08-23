@@ -17,6 +17,7 @@ const Container = styled.div`
   gap: 32px;
   flex-wrap: wrap;
   width: 100%;
+  margin-top: 16px;
 `;
 
 const MovieList: FunctionComponent<MovieListProps> = ({ movies }) => {

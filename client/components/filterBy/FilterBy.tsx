@@ -17,6 +17,7 @@ type FilterByProps = {
 const Container = styled.div`
   display: flex;
   gap: 8px;
+  margin: 8px 0;
 `;
 
 const FilterBy: FunctionComponent<FilterByProps> = ({
