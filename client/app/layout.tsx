@@ -1,13 +1,12 @@
 import "./globals.css";
-import "@fortawesome/fontawesome-svg-core/styles.css";
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FunctionComponent, ReactNode } from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
 import StyledComponentsRegistry from "./Registry";
-
 import Providers from "../redux/Provider";
 
 config.autoAddCss = false;

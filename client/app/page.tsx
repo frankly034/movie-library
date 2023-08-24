@@ -1,6 +1,6 @@
 "use client";
 
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -10,7 +10,6 @@ import {
   Loading,
   MovieList,
   PageWrapper,
-  Title,
 } from "../components";
 import {
   useGetGenresQuery,
@@ -22,17 +21,19 @@ import {
   setSearch,
   setSelectedMovie,
   toggleShowFilter,
+  nextPage,
+  previousPage,
 } from "../redux/features/filter/filterSlice";
 import Genre from "../models/genre";
 import { RootState } from "../redux/store";
-import Movie from "@/models/movie";
+import Movie from "../models/movie";
+import MovieNavigation from "../components/movieNavigation";
 
 const Home: FunctionComponent = () => {
   const dispatch = useDispatch();
 
-  const { search, selectedGenres, showFilter } = useSelector(
-    (state: RootState) => state.filter
-  );
+  const { search, selectedGenres, showFilter, totalPages, currentPage } =
+    useSelector((state: RootState) => state.filter);
 
   const handleAddGenre = (genre: Genre) => dispatch(addGenre(genre));
   const handleRemoveGenre = (genre: Genre) => dispatch(removeGenre(genre.id));
@@ -40,15 +41,22 @@ const Home: FunctionComponent = () => {
   const handleClearSearch = () => dispatch(setSearch(""));
   const handleToggleShowFilter = () => dispatch(toggleShowFilter());
   const handleSelectMovie = (movie: Movie) => dispatch(setSelectedMovie(movie));
+  const handleSetNextPage = () => dispatch(nextPage());
+  const handleSetPreviousPage = () => dispatch(previousPage());
 
+  // Todo: add display error feature
   const {
     data: paginatedMovies,
     isLoading,
     isFetching,
-  } = useGetMoviesQuery({
-    search,
-    genres: selectedGenres.map((genre) => genre.id),
-  });
+  } = useGetMoviesQuery(
+    {
+      search,
+      page: currentPage.toString(),
+      genres: selectedGenres.map((genre) => genre.id),
+    },
+    { refetchOnMountOrArgChange: true }
+  );
 
   const { data: paginatedGenres } = useGetGenresQuery({});
 
@@ -59,6 +67,12 @@ const Home: FunctionComponent = () => {
   return (
     <PageWrapper>
       <Heading showFilter={handleToggleShowFilter} />
+      <MovieNavigation
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onNextPage={handleSetNextPage}
+        onPreviousPage={handleSetPreviousPage}
+      />
       {showFilter && (
         <Filter
           genres={paginatedGenres?.data.items}

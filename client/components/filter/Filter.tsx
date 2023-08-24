@@ -25,6 +25,7 @@ const TagsContainer = styled.div`
   overflow-y: scroll;
 `;
 
+// Todo: add debounce on search input
 const Filter: FunctionComponent<FilterProps> = ({
   genres = [],
   onSearch,

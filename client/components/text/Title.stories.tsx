@@ -14,7 +14,7 @@ type Story = StoryObj<typeof Text>;
 export const Default: Story = {
   args: {
     children: "Gift a friend this holiday",
-    textColor: "",
+    color: "",
     size: "",
   },
 };

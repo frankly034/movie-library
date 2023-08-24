@@ -66,6 +66,13 @@ const MoviePage: FunctionComponent = () => {
     color: #ffbf00;
   `;
 
+  let releaseYear = 0;
+
+  if (movie?.releaseDate) {
+    const releaseDate = new Date(movie?.releaseDate);
+    releaseYear = releaseDate.getFullYear();
+  }
+
   return (
     <PageWrapper>
       <Heading showSearchButton={false} />
@@ -79,7 +86,7 @@ const MoviePage: FunctionComponent = () => {
           <Content>
             <Title size="40px">{movie.title}</Title>
             <Ratings rating={Number(movie.voteAverage) / 2} />
-            <Text>2023</Text>
+            <Text size="24px">{releaseYear || "-"}</Text>
             <Genres genres={movie.genres} />
             <VoteCount count={movie.voteCount} />
             <Text margin="16px 0" size="16px">
