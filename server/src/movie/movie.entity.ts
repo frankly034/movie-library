@@ -11,6 +11,9 @@ export class Movie extends BaseAbstractEntity {
   public title: string;
 
   @Column()
+  public backdropPath: string;
+
+  @Column()
   public overview: string;
 
   @Column('decimal')

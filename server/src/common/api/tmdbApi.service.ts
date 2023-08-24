@@ -32,6 +32,7 @@ export default class TMDBApiService {
     genreLinkedList: GenreLinkedList,
   ): MappedMovie {
     const {
+      backdrop_path,
       genre_ids,
       poster_path,
       release_date,
@@ -47,6 +48,9 @@ export default class TMDBApiService {
       .filter((genre) => genre);
 
     return {
+      backdropPath: `${this.configService.get(
+        'TMDB_BASE_IMAGE_URL',
+      )}${backdrop_path}`,
       overview,
       popularity,
       title,

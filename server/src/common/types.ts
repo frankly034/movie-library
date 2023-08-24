@@ -26,6 +26,7 @@ export interface TMDBMovieResponse {
 }
 
 export interface UnMappedMovie {
+  backdrop_path: string;
   genre_ids: number[];
   overview: string;
   popularity: number;
@@ -37,6 +38,7 @@ export interface UnMappedMovie {
 }
 
 export interface MappedMovie {
+  backdropPath: string;
   title: string;
   overview: string;
   voteAverage: number;
