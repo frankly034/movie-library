@@ -8,6 +8,8 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 
 import StyledComponentsRegistry from "./Registry";
 
+import Providers from "../redux/Provider";
+
 config.autoAddCss = false;
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,9 +25,11 @@ export const metadata: Metadata = {
 
 const RootLayout: FunctionComponent<RootLayoutProps> = ({ children }) => (
   <html lang="en">
-    <StyledComponentsRegistry>
-      <body className={inter.className}>{children}</body>
-    </StyledComponentsRegistry>
+    <Providers>
+      <StyledComponentsRegistry>
+        <body className={inter.className}>{children}</body>
+      </StyledComponentsRegistry>
+    </Providers>
   </html>
 );
 

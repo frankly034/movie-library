@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 type FilterByProps = {
-  genres: Genre[];
+  genres?: Genre[];
   search?: string;
   onClickTag: () => void;
 };
@@ -22,7 +22,7 @@ const Container = styled.div`
 
 const FilterBy: FunctionComponent<FilterByProps> = ({
   search,
-  genres,
+  genres = [],
   onClickTag,
 }) => {
   return (

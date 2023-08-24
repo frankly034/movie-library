@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { ClickableTag, SearchInput } from "..";
 
 type FilterProps = {
-  genres: Genre[];
+  genres?: Genre[];
   onTagClick: (tag: Genre) => void;
   onSearch: () => void;
 };
@@ -25,7 +25,7 @@ const TagsContainer = styled.div`
 `;
 
 const Filter: FunctionComponent<FilterProps> = ({
-  genres,
+  genres = [],
   onSearch,
   onTagClick,
 }) => {

@@ -3,10 +3,9 @@
 exports[`Component - ClickableTagWithCloseIcon should render component 1`] = `
 <div>
   <button
-    class="sc-bcPKhP sc-gKHVLF TrbCn pBOpD"
+    class="sc-bcPKhP sc-fnOeiS TrbCn kwOQbv"
   >
     Action
-     
     <svg
       aria-hidden="true"
       class="svg-inline--fa fa-xmark "

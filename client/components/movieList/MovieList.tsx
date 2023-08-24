@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 import Movie from "../../models/movie";
 import { FunctionComponent } from "react";
-import { MovieCard } from "..";
+import { MovieCard, Title } from "..";
 
 type MovieListProps = {
-  movies: Movie[];
+  movies?: Movie[];
   size?: string;
   margin?: string;
 };
@@ -23,9 +23,11 @@ const Container = styled.div`
 const MovieList: FunctionComponent<MovieListProps> = ({ movies }) => {
   return (
     <Container>
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
+      {movies && movies.length ? (
+        movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+      ) : (
+        <Title>No movies found</Title>
+      )}
     </Container>
   );
 };
