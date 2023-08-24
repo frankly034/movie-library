@@ -22,12 +22,13 @@ const Container = styled.div`
   transition-delay: 0.1s;
 
   &:hover {
-    pointer: cursor;
-    transform: scale(1.05)
+    transform: scale(1.05);
     border-color: #ffbf00;
+    cursor: pointer;
   }
 `;
 
+// TODO: add placeholder = blur functionality
 const MovieCard: FunctionComponent<MovieCardProps> = ({
   movie: { posterPath, title, voteAverage, genres },
 }) => {
@@ -37,11 +38,9 @@ const MovieCard: FunctionComponent<MovieCardProps> = ({
       <Image
         src={posterPath}
         alt={title}
-        // placeholder="blur"
         quality={100}
         width={300}
         height={450}
-        // fill
         style={{
           objectFit: "cover",
         }}

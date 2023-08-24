@@ -7,6 +7,7 @@ import {
   Filter,
   FilterBy,
   Heading,
+  Loading,
   MovieList,
   PageWrapper,
   Title,
@@ -72,7 +73,7 @@ const Home: FunctionComponent = () => {
         />
       )}
       {showLoading ? (
-        <Title>Loading</Title>
+        <Loading />
       ) : (
         <MovieList movies={paginatedMovies?.data.items} />
       )}

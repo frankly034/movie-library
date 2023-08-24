@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import Movie from "../../models/movie";
 import { FunctionComponent } from "react";
-import { MovieCard, Title } from "..";
+import { EmptyState, MovieCard } from "..";
 
 type MovieListProps = {
   movies?: Movie[];
@@ -26,7 +26,7 @@ const MovieList: FunctionComponent<MovieListProps> = ({ movies }) => {
       {movies && movies.length ? (
         movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
       ) : (
-        <Title>No movies found</Title>
+        <EmptyState />
       )}
     </Container>
   );

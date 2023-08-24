@@ -3,6 +3,7 @@
 import Genre from "@/models/genre";
 import { FunctionComponent } from "react";
 import styled from "styled-components";
+
 import { ClickableTag, SearchInput } from "..";
 
 type FilterProps = {
@@ -15,7 +16,6 @@ type FilterProps = {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 32px;
 `;
 
 const TagsContainer = styled.div`
