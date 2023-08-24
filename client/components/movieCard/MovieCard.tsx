@@ -22,9 +22,7 @@ const Container = styled.div`
   transition-delay: 0.1s;
 
   &:hover {
-    transform: scale(1.05);
     border-color: #ffbf00;
-    cursor: pointer;
   }
 `;
 
@@ -49,7 +47,7 @@ const MovieCard: FunctionComponent<MovieCardProps> = ({
         {title}
       </Title>
       <Ratings rating={rating} />
-      <Genres genres={genres} />
+      <Genres genres={genres} maxCount={3} />
     </Container>
   );
 };

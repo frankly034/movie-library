@@ -3,16 +3,19 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import Genre from "../../../models/genre";
+import Movie from "../../../models/movie";
 
 export interface FilterState {
   search: string;
   selectedGenres: Genre[];
+  selectedMovie?: Movie | null;
   showFilter: boolean;
 }
 
 const initialState: FilterState = {
   search: "",
   selectedGenres: [],
+  selectedMovie: null,
   showFilter: false,
 };
 
@@ -48,10 +51,18 @@ export const filterSlice = createSlice({
     toggleShowFilter: (state) => {
       state.showFilter = toggleShowingFilter(state.showFilter);
     },
+    setSelectedMovie: (state, action: PayloadAction<Movie>) => {
+      state.selectedMovie = action.payload;
+    },
   },
 });
 
-export const { setSearch, addGenre, removeGenre, toggleShowFilter } =
-  filterSlice.actions;
+export const {
+  setSearch,
+  addGenre,
+  removeGenre,
+  toggleShowFilter,
+  setSelectedMovie,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;

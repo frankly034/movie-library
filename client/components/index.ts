@@ -15,3 +15,5 @@ export { default as PageWrapper } from "./pageWrapper";
 export { default as Loading } from "./loading";
 export { DisplayContainer } from "./loading";
 export { default as EmptyState } from "./emptyState";
+export { default as CustomLink } from "./customLink";
+export { default as VoteCount } from "./voteCount";

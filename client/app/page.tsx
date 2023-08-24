@@ -20,10 +20,12 @@ import {
   addGenre,
   removeGenre,
   setSearch,
+  setSelectedMovie,
   toggleShowFilter,
 } from "../redux/features/filter/filterSlice";
 import Genre from "../models/genre";
 import { RootState } from "../redux/store";
+import Movie from "@/models/movie";
 
 const Home: FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -37,6 +39,7 @@ const Home: FunctionComponent = () => {
   const handleSearch = (search: string) => dispatch(setSearch(search));
   const handleClearSearch = () => dispatch(setSearch(""));
   const handleToggleShowFilter = () => dispatch(toggleShowFilter());
+  const handleSelectMovie = (movie: Movie) => dispatch(setSelectedMovie(movie));
 
   const {
     data: paginatedMovies,
@@ -75,7 +78,10 @@ const Home: FunctionComponent = () => {
       {showLoading ? (
         <Loading />
       ) : (
-        <MovieList movies={paginatedMovies?.data.items} />
+        <MovieList
+          movies={paginatedMovies?.data.items}
+          onClick={handleSelectMovie}
+        />
       )}
     </PageWrapper>
   );

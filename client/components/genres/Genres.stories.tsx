@@ -42,3 +42,10 @@ export const Default: Story = {
     genres,
   },
 };
+
+export const GenreWithMaxCount: Story = {
+  args: {
+    genres,
+    maxCount: 2,
+  },
+};

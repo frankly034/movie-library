@@ -1,15 +1,14 @@
 "use client";
 
+import { FunctionComponent } from "react";
 import styled from "styled-components";
 
 import Movie from "../../models/movie";
-import { FunctionComponent } from "react";
-import { EmptyState, MovieCard } from "..";
+import { CustomLink, EmptyState, MovieCard } from "..";
 
 type MovieListProps = {
   movies?: Movie[];
-  size?: string;
-  margin?: string;
+  onClick?: (movie: Movie) => void;
 };
 
 const Container = styled.div`
@@ -20,11 +19,19 @@ const Container = styled.div`
   margin-top: 16px;
 `;
 
-const MovieList: FunctionComponent<MovieListProps> = ({ movies }) => {
+const MovieList: FunctionComponent<MovieListProps> = ({ movies, onClick }) => {
   return (
     <Container>
       {movies && movies.length ? (
-        movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+        movies.map((movie) => (
+          <CustomLink
+            onClick={() => onClick && onClick(movie)}
+            key={movie.id}
+            href={`/${movie.id}`}
+          >
+            <MovieCard movie={movie} />
+          </CustomLink>
+        ))
       ) : (
         <EmptyState />
       )}

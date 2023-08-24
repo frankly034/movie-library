@@ -4,6 +4,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent } from "react";
 import styled from "styled-components";
+
 import { Text } from "..";
 
 export const DisplayContainer = styled.div`
@@ -13,7 +14,7 @@ export const DisplayContainer = styled.div`
   width: 100%;
   gap: 16px;
   justify-content: center;
-  height: 70vh;
+  height: 50vh;
 `;
 
 const Loading: FunctionComponent = () => {

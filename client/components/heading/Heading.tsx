@@ -3,11 +3,12 @@
 import { FunctionComponent } from "react";
 import styled from "styled-components";
 
-import { Title } from "..";
+import { CustomLink, Title } from "..";
 import SearchButton from "../searchButton/SearchButton";
 
 interface HeadingProps {
-  showFilter: () => void;
+  showFilter?: () => void;
+  showSearchButton?: boolean;
 }
 
 const Container = styled.div`
@@ -17,11 +18,18 @@ const Container = styled.div`
   padding-bottom: 8px;
 `;
 
-const Heading: FunctionComponent<HeadingProps> = ({ showFilter }) => {
+const Heading: FunctionComponent<HeadingProps> = ({
+  showFilter,
+  showSearchButton = true,
+}) => {
   return (
     <Container>
-      <Title size="32px">EML</Title>
-      <SearchButton onClick={showFilter} />
+      <CustomLink href={"/"}>
+        <Title size="32px">EML</Title>
+      </CustomLink>
+      {showSearchButton && (
+        <SearchButton onClick={() => showFilter && showFilter()} />
+      )}
     </Container>
   );
 };
