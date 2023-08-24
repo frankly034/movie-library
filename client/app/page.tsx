@@ -19,6 +19,7 @@ import {
   addGenre,
   removeGenre,
   setSearch,
+  toggleShowFilter,
 } from "../redux/features/filter/filterSlice";
 import Genre from "../models/genre";
 import { RootState } from "../redux/store";
@@ -26,7 +27,7 @@ import { RootState } from "../redux/store";
 const Home: FunctionComponent = () => {
   const dispatch = useDispatch();
 
-  const { search, selectedGenres } = useSelector(
+  const { search, selectedGenres, showFilter } = useSelector(
     (state: RootState) => state.filter
   );
 
@@ -34,6 +35,7 @@ const Home: FunctionComponent = () => {
   const handleRemoveGenre = (genre: Genre) => dispatch(removeGenre(genre.id));
   const handleSearch = (search: string) => dispatch(setSearch(search));
   const handleClearSearch = () => dispatch(setSearch(""));
+  const handleToggleShowFilter = () => dispatch(toggleShowFilter());
 
   const {
     data: paginatedMovies,
@@ -52,13 +54,15 @@ const Home: FunctionComponent = () => {
 
   return (
     <PageWrapper>
-      <Heading />
-      <Filter
-        genres={paginatedGenres?.data.items}
-        onSearch={handleSearch}
-        onTagClick={handleAddGenre}
-        search={search}
-      />
+      <Heading showFilter={handleToggleShowFilter} />
+      {showFilter && (
+        <Filter
+          genres={paginatedGenres?.data.items}
+          onSearch={handleSearch}
+          onTagClick={handleAddGenre}
+          search={search}
+        />
+      )}
       {showFilterBy && (
         <FilterBy
           search={search}

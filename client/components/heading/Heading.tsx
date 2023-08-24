@@ -2,8 +2,13 @@
 
 import { FunctionComponent } from "react";
 import styled from "styled-components";
+
 import { Title } from "..";
 import SearchButton from "../searchButton/SearchButton";
+
+interface HeadingProps {
+  showFilter: () => void;
+}
 
 const Container = styled.div`
   display: flex;
@@ -12,12 +17,11 @@ const Container = styled.div`
   padding-bottom: 8px;
 `;
 
-const Heading: FunctionComponent = () => {
-  const handleClick = () => console.log("Yaay");
+const Heading: FunctionComponent<HeadingProps> = ({ showFilter }) => {
   return (
     <Container>
       <Title size="32px">EML</Title>
-      <SearchButton onClick={handleClick} />
+      <SearchButton onClick={showFilter} />
     </Container>
   );
 };

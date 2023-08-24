@@ -7,11 +7,13 @@ import Genre from "../../../models/genre";
 export interface FilterState {
   search: string;
   selectedGenres: Genre[];
+  showFilter: boolean;
 }
 
 const initialState: FilterState = {
   search: "",
   selectedGenres: [],
+  showFilter: false,
 };
 
 const addNewGenre = (genre: Genre, selectedGenres: Genre[]): Genre[] => {
@@ -22,6 +24,10 @@ const addNewGenre = (genre: Genre, selectedGenres: Genre[]): Genre[] => {
     return selectedGenres;
   }
   return [...(selectedGenres || []), genre];
+};
+
+const toggleShowingFilter = (showFilter: boolean) => {
+  return !showFilter;
 };
 
 export const filterSlice = createSlice({
@@ -39,9 +45,13 @@ export const filterSlice = createSlice({
         return genre.id !== action.payload;
       });
     },
+    toggleShowFilter: (state) => {
+      state.showFilter = toggleShowingFilter(state.showFilter);
+    },
   },
 });
 
-export const { setSearch, addGenre, removeGenre } = filterSlice.actions;
+export const { setSearch, addGenre, removeGenre, toggleShowFilter } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;
