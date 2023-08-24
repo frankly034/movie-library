@@ -11,7 +11,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 type FilterByProps = {
   genres?: Genre[];
   search?: string;
-  onClickTag: () => void;
+  onClickTag: (genre: Genre) => void;
+  onClearSearch: () => void;
 };
 
 const Container = styled.div`
@@ -24,6 +25,7 @@ const FilterBy: FunctionComponent<FilterByProps> = ({
   search,
   genres = [],
   onClickTag,
+  onClearSearch,
 }) => {
   return (
     <Container>
@@ -31,13 +33,13 @@ const FilterBy: FunctionComponent<FilterByProps> = ({
       {search && (
         <ClickableTagWithCloseIcon
           addonBefore={<FontAwesomeIcon icon={faSearch} />}
-          onClick={onClickTag}
+          onClick={onClearSearch}
         >
           {search}
         </ClickableTagWithCloseIcon>
       )}
       {genres?.map((genre) => (
-        <ClickableTagWithCloseIcon onClick={onClickTag}>
+        <ClickableTagWithCloseIcon onClick={() => onClickTag(genre)}>
           {genre.name}
         </ClickableTagWithCloseIcon>
       ))}

@@ -1,6 +1,7 @@
 "use client";
 
 import { FunctionComponent } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Filter,
@@ -14,24 +15,59 @@ import {
   useGetGenresQuery,
   useGetMoviesQuery,
 } from "../redux/services/movieApi";
+import {
+  addGenre,
+  removeGenre,
+  setSearch,
+} from "../redux/features/filter/filterSlice";
+import Genre from "../models/genre";
+import { RootState } from "../redux/store";
 
 const Home: FunctionComponent = () => {
+  const dispatch = useDispatch();
+
+  const { search, selectedGenres } = useSelector(
+    (state: RootState) => state.filter
+  );
+
+  const handleAddGenre = (genre: Genre) => dispatch(addGenre(genre));
+  const handleRemoveGenre = (genre: Genre) => dispatch(removeGenre(genre.id));
+  const handleSearch = (search: string) => dispatch(setSearch(search));
+  const handleClearSearch = () => dispatch(setSearch(""));
+
   const {
     data: paginatedMovies,
     isLoading,
     isFetching,
-  } = useGetMoviesQuery({});
+  } = useGetMoviesQuery({
+    search,
+    genres: selectedGenres.map((genre) => genre.id),
+  });
+
   const { data: paginatedGenres } = useGetGenresQuery({});
+
+  const showFilterBy = !!selectedGenres.length || search;
+
+  const showLoading = isFetching || isLoading;
+
   return (
     <PageWrapper>
       <Heading />
       <Filter
         genres={paginatedGenres?.data.items}
-        onSearch={() => console.log("searching")}
-        onTagClick={() => console.log("clicked tag")}
+        onSearch={handleSearch}
+        onTagClick={handleAddGenre}
+        search={search}
       />
-      <FilterBy genres={[]} onClickTag={() => console.log("Removing tag")} />
-      {isFetching || isLoading ? (
+      {showFilterBy && (
+        <FilterBy
+          search={search}
+          genres={selectedGenres}
+          onClickTag={handleRemoveGenre}
+          onClearSearch={handleClearSearch}
+        />
+      )}
+      {showLoading ? (
         <Title>Loading</Title>
       ) : (
         <MovieList movies={paginatedMovies?.data.items} />

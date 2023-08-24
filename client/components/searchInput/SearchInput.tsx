@@ -7,8 +7,9 @@ import styled from "styled-components";
 
 interface SearchInputProps {
   name?: string;
-  onChange: () => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholderText?: string;
+  value: string;
 }
 
 const Input = styled.input<SearchInputProps>`
@@ -29,6 +30,7 @@ const SearchInput: FunctionComponent<SearchInputProps> = ({
   name,
   onChange,
   placeholderText,
+  value,
 }) => {
   return (
     <Container>
@@ -38,6 +40,7 @@ const SearchInput: FunctionComponent<SearchInputProps> = ({
         name={name}
         onChange={onChange}
         placeholder={placeholderText}
+        value={value}
       />
     </Container>
   );

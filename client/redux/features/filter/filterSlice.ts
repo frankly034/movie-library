@@ -6,20 +6,22 @@ import Genre from "../../../models/genre";
 
 export interface FilterState {
   search: string;
-  genres: Genre[];
+  selectedGenres: Genre[];
 }
 
 const initialState: FilterState = {
   search: "",
-  genres: [],
+  selectedGenres: [],
 };
 
-const addNewTag = (genre: Genre, genres: Genre[]): Genre[] => {
-  const foundTag = genres.filter((curGenre) => curGenre.id === genre.id);
+const addNewGenre = (genre: Genre, selectedGenres: Genre[]): Genre[] => {
+  const foundTag = selectedGenres.filter(
+    (curGenre) => curGenre.id === genre.id
+  );
   if (foundTag.length) {
-    return genres;
+    return selectedGenres;
   }
-  return [...(genres || []), genre];
+  return [...(selectedGenres || []), genre];
 };
 
 export const filterSlice = createSlice({
@@ -29,17 +31,17 @@ export const filterSlice = createSlice({
     setSearch: (state, action: PayloadAction<string>) => {
       state.search = action.payload;
     },
-    addTag: (state, action: PayloadAction<Genre>) => {
-      state.genres = addNewTag(action.payload, state.genres);
+    addGenre: (state, action: PayloadAction<Genre>) => {
+      state.selectedGenres = addNewGenre(action.payload, state.selectedGenres);
     },
-    removeTag: (state, action: PayloadAction<string>) => {
-      state.genres = state.genres.filter((genre) => {
+    removeGenre: (state, action: PayloadAction<string>) => {
+      state.selectedGenres = state.selectedGenres.filter((genre) => {
         return genre.id !== action.payload;
       });
     },
   },
 });
 
-export const { setSearch, addTag, removeTag } = filterSlice.actions;
+export const { setSearch, addGenre, removeGenre } = filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -8,7 +8,8 @@ import { ClickableTag, SearchInput } from "..";
 type FilterProps = {
   genres?: Genre[];
   onTagClick: (tag: Genre) => void;
-  onSearch: () => void;
+  onSearch: (search: string) => void;
+  search: string;
 };
 
 const Container = styled.div`
@@ -28,6 +29,7 @@ const Filter: FunctionComponent<FilterProps> = ({
   genres = [],
   onSearch,
   onTagClick,
+  search = "",
 }) => {
   return (
     <Container>
@@ -39,8 +41,9 @@ const Filter: FunctionComponent<FilterProps> = ({
         ))}
       </TagsContainer>
       <SearchInput
-        onChange={onSearch}
+        onChange={(e) => onSearch(e.target.value)}
         placeholderText="Search movies by title"
+        value={search}
       />
     </Container>
   );
