@@ -1,34 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Entain Movie Library: Client
+
+Welcome to Entain Movie Library SPA! This is a feature-rich web application built with Next.js, designed to provide you with a seamless movie browsing experience.
+
+## Features
+
+- **Movie Listing**: Explore a vast collection of movies right at your fingertips.
+
+- **Filter Functionality**: Easily filter movies by genres and titles, making it simple to discover movies that match your preferences.
+
+- **View Movie Details**: Dive deeper into your favorite movies by accessing detailed information about each film.
+
+## Technologies Used
+
+- **Next.js**: A powerful React framework for creating efficient and scalable web applications.
+
+- **Redux Toolkit**: A set of tools for efficient Redux development, simplifying state management.
+
+- **Redux Toolkit Query**: A data-fetching library that works seamlessly with Redux Toolkit, streamlining API calls and data caching.
+
+- **Storybook**: A development environment for building and documenting UI components, ensuring efficient component design and documentation.
+
+- **Jest and React Testing Library**: Comprehensive testing tools to ensure your application functions correctly and reliably.
+
+- **Styled Components**: A CSS-in-JS library that allows you to write actual CSS code to style your components.
 
 ## Getting Started
 
-First, run the development server:
+To run this application on your local machine, follow these simple steps:
+
+1. Clone the Repository: Start by cloning this repository to your local machine.
+
+```bash
+git clone https://github.com/frankly034/movie-library.git
+```
+
+2. Install Dependencies: Navigate to the project directory and install the required dependencies.
+
+```bash
+cd movie-library/client
+npm install
+```
+
+3. Start the Development Server: Launch the Next.js development server to run the application locally.
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Access the Application: Open your web browser and visit http://localhost:3000 to access the Movie Library SPA.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Development
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Storybook
 
-## Learn More
+For component development and documentation using Storybook, use the following commands:
 
-To learn more about Next.js, take a look at the following resources:
+- Start Storybook:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run storybook
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Access the Storybook UI by opening http://localhost:6006 in your browser.
 
-## Deploy on Vercel
+### Testing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Run tests with Jest and React Testing Library:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Execute test:
+
+```bash
+npm test
+```

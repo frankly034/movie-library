@@ -1,73 +1,53 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Entain Movie Library: Server
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Welcome to the Movie Listing Application built with Nest.js! This application provides a feature-rich movie listing experience, including the ability to browse genres, discover movies, search for films by title and genre.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- **TMDB Data Integration**: This application seamlessly loads genre and movie data from The Movie Database (TMDB) using Nest.js lifecycle methods.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **API Endpoints**:
+  - **Fetch Paginated List of Genres**: Retrieve a paginated list of genres to help categorize movies.
+  - **Fetch Paginated List of Movies**: Explore a paginated list of movies, making it easy to discover new films.
+  - **Search Movies by Title and Genre**: Effortlessly find movies based on their title and genre.
+- **Testing with Jest and Supertest**: Robust testing has been implemented using Jest and Supertest to ensure the application functions reliably.
 
-## Installation
+- **Caching with a Database**: The application employs caching using a database to enhance performance and reduce external API calls.
+
+- **Docker Compose Setup**: Docker Compose is utilized to simplify the setup and deployment of the application, making it easier to get started.
+
+- **Rate Limiting**: To ensure fair usage and protect against abuse, rate limiting is in place to control the frequency of API requests.
+
+## Getting Started
+
+To get the Movie Listing Application up and running, follow these steps:
+
+**Clone the Repository**: Begin by cloning this repository to your local machine.
 
 ```bash
-$ npm install
+git clone https://github.com/frankly034/movie-library.git
 ```
 
-## Running the app
+### Docker Compose
+
+A Docker Compose setup is provided to facilitate development and deployment. To start the application using Docker Compose, run:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+docker-compose up
 ```
 
-## Test
+`This command will launch the application along with any necessary services.`
+
+**Access the API**: Open your web browser or a tool like **[Postman](https://www.postman.com/)** and interact with the API endpoints. The API will be available at http://localhost:5000.
+
+### Development
+
+#### Running Tests
+
+To execute the tests using Jest, use the following command:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm test
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Thank you for using the Movie Listing Application built with Nest.js. Enjoy exploring the world of movies!
