@@ -27,7 +27,7 @@ const MovieList: FunctionComponent<MovieListProps> = ({ movies, onClick }) => {
           <CustomLink
             onClick={() => onClick && onClick(movie)}
             key={movie.id}
-            href={`/${movie.id}`}
+            href={`/details`}
           >
             <MovieCard movie={movie} />
           </CustomLink>
