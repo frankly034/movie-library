@@ -1,6 +1,6 @@
 "use client";
 
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -78,7 +78,6 @@ const Home: FunctionComponent = () => {
           genres={paginatedGenres?.data.items}
           onSearch={handleSearch}
           onTagClick={handleAddGenre}
-          search={search}
         />
       )}
       {showFilterBy && (
