@@ -13,6 +13,6 @@ type Story = StoryObj<typeof SearchInput>;
 
 export const Default: Story = {
   args: {
-    placeholderText: "Search here",
+    placeholder: "Search here",
   },
 };
