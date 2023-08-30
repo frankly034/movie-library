@@ -25,7 +25,7 @@ const Heading: FunctionComponent<HeadingProps> = ({
   return (
     <Container>
       <CustomLink href={"/"}>
-        <Title size="32px">EML</Title>
+        <Title $size="32px">EML</Title>
       </CustomLink>
       {showSearchButton && (
         <SearchButton onClick={() => showFilter && showFilter()} />

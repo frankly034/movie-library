@@ -21,7 +21,7 @@ const Loading: FunctionComponent = () => {
   return (
     <DisplayContainer>
       <FontAwesomeIcon icon={faSpinner} spin />
-      <Text size="48px">Loading...</Text>
+      <Text $size="48px">Loading...</Text>
     </DisplayContainer>
   );
 };
