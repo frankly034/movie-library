@@ -2,14 +2,13 @@
 
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { FunctionComponent } from "react";
+import { InputHTMLAttributes, Ref, forwardRef } from "react";
 import styled from "styled-components";
 
-interface SearchInputProps {
-  name?: string;
+interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholderText?: string;
   value: string;
+  forwardRef?: Ref<HTMLInputElement>;
 }
 
 const Input = styled.input<SearchInputProps>`
@@ -26,24 +25,23 @@ const Container = styled.div`
   color: #f9f9f9;
 `;
 
-const SearchInput: FunctionComponent<SearchInputProps> = ({
-  name,
-  onChange,
-  placeholderText,
-  value,
-}) => {
-  return (
-    <Container>
-      <FontAwesomeIcon icon={faSearch} />
-      <Input
-        role="search-input"
-        name={name}
-        onChange={onChange}
-        placeholder={placeholderText}
-        value={value}
-      />
-    </Container>
-  );
-};
+const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
+  (props, ref) => {
+    const { forwardRef, name, onChange, placeholder, value } = props;
+    return (
+      <Container>
+        <FontAwesomeIcon icon={faSearch} />
+        <Input
+          ref={forwardRef || ref}
+          role="search-input"
+          name={name}
+          onChange={onChange}
+          placeholder={placeholder}
+          value={value}
+        />
+      </Container>
+    );
+  }
+);
 
 export default SearchInput;
