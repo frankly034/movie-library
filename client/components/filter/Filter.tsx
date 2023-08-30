@@ -1,7 +1,7 @@
 "use client";
 
 import Genre from "@/models/genre";
-import { FunctionComponent } from "react";
+import { Ref, forwardRef } from "react";
 import styled from "styled-components";
 
 import { ClickableTag, SearchInput } from "..";
@@ -11,6 +11,7 @@ type FilterProps = {
   onTagClick: (tag: Genre) => void;
   onSearch: (search: string) => void;
   search: string;
+  forwardRef?: Ref<HTMLInputElement>;
 };
 
 const Container = styled.div`
@@ -26,12 +27,9 @@ const TagsContainer = styled.div`
 `;
 
 // Todo: add debounce on search input
-const Filter: FunctionComponent<FilterProps> = ({
-  genres = [],
-  onSearch,
-  onTagClick,
-  search = "",
-}) => {
+const Filter = forwardRef<HTMLInputElement, FilterProps>((props, ref) => {
+  const { forwardRef, genres = [], onSearch, onTagClick, search = "" } = props;
+
   return (
     <Container>
       <TagsContainer>
@@ -42,12 +40,14 @@ const Filter: FunctionComponent<FilterProps> = ({
         ))}
       </TagsContainer>
       <SearchInput
+        name="search-input"
         onChange={(e) => onSearch(e.target.value)}
-        placeholderText="Search movies by title"
+        placeholder="Search movies by title"
         value={search}
+        forwardRef={forwardRef || ref}
       />
     </Container>
   );
-};
+});
 
 export default Filter;

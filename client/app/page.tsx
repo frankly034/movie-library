@@ -1,6 +1,6 @@
 "use client";
 
-import { FunctionComponent, useEffect } from "react";
+import { FunctionComponent, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -64,6 +64,15 @@ const Home: FunctionComponent = () => {
 
   const showLoading = isFetching || isLoading;
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // transfers focus to the search input after its mounted
+  useEffect(() => {
+    if (showFilter && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [showFilter]);
+
   return (
     <PageWrapper>
       <Heading showFilter={handleToggleShowFilter} />
@@ -79,6 +88,7 @@ const Home: FunctionComponent = () => {
           onSearch={handleSearch}
           onTagClick={handleAddGenre}
           search={search}
+          forwardRef={inputRef}
         />
       )}
       {showFilterBy && (
