@@ -29,7 +29,7 @@ const FilterBy: FunctionComponent<FilterByProps> = ({
 }) => {
   return (
     <Container>
-      <Text margin="0 8px 0 0">Filter: </Text>
+      <Text $margin="0 8px 0 0">Filter: </Text>
       {search && (
         <ClickableTagWithCloseIcon
           addonBefore={<FontAwesomeIcon icon={faSearch} />}
@@ -39,7 +39,10 @@ const FilterBy: FunctionComponent<FilterByProps> = ({
         </ClickableTagWithCloseIcon>
       )}
       {genres?.map((genre) => (
-        <ClickableTagWithCloseIcon onClick={() => onClickTag(genre)}>
+        <ClickableTagWithCloseIcon
+          key={genre.id}
+          onClick={() => onClickTag(genre)}
+        >
           {genre.name}
         </ClickableTagWithCloseIcon>
       ))}
