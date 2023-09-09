@@ -20,8 +20,8 @@ const Container = styled.div`
 
 const TagsContainer = styled.div`
   display: flex;
-  gap: 8px;
-  padding: 16px 0;
+  gap: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.lg} 0;
   overflow-y: scroll;
 `;
 

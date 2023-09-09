@@ -3,7 +3,7 @@
 exports[`Component - SearchButton should render component 1`] = `
 <div>
   <button
-    class="sc-bcPKhP YUvBs"
+    class="sc-bcPKhP fhhRhC"
   >
     <svg
       aria-hidden="true"

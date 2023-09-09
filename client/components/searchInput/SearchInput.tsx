@@ -15,15 +15,15 @@ interface SearchInputProps {
 const Input = styled.input<SearchInputProps>`
   all: unset;
   width: 100%;
-  padding: 4px;
+  padding: ${({ theme }) => theme.spacing.sm};
   font-size: 24px;
-  padding-left: 8px;
+  padding-left: ${({ theme }) => theme.spacing.md};
 `;
 
 const Container = styled.div`
   display: flex;
   align-items: center;
-  color: #f9f9f9;
+  color: ${({ theme }) => theme.palette.foregroundSecondary};
 `;
 
 const SearchInput: FunctionComponent<SearchInputProps> = ({

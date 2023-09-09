@@ -25,12 +25,12 @@ const ClickableTagWithCloseIcon: FunctionComponent<
 const Container = styled(ClickableTag)`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: ${({ theme }) => theme.spacing.sm};
 
   &:hover {
-    transform: scale(1.05);
-    border-color: #c32020;
-    color: #c32020;
+    transform: scale(${({ theme }) => theme.variables.scale});
+    border-color: ${({ theme }) => theme.palette.failureColor};
+    color: ${({ theme }) => theme.palette.failureColor};
   }
 `;
 

@@ -1,5 +1,3 @@
-import "./globals.css";
-
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { FunctionComponent, ReactNode } from "react";
 import type { Metadata } from "next";
@@ -8,6 +6,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 
 import StyledComponentsRegistry from "./Registry";
 import Providers from "../redux/Provider";
+import { GlobalStyle, ThemeProvider } from "../styles";
 
 config.autoAddCss = false;
 
@@ -26,7 +25,10 @@ const RootLayout: FunctionComponent<RootLayoutProps> = ({ children }) => (
   <html lang="en">
     <Providers>
       <StyledComponentsRegistry>
-        <body className={inter.className}>{children}</body>
+        <ThemeProvider>
+          <GlobalStyle />
+          <body className={inter.className}>{children}</body>
+        </ThemeProvider>
       </StyledComponentsRegistry>
     </Providers>
   </html>

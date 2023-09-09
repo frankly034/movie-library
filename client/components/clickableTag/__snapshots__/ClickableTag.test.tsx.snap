@@ -3,7 +3,7 @@
 exports[`Component - ClickableTag should render component 1`] = `
 <div>
   <button
-    class="sc-bcPKhP TrbCn"
+    class="sc-bcPKhP hgpKBX"
   >
     Action
   </button>

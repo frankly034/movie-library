@@ -3,7 +3,7 @@
 exports[`Component - SearchInput renders component 1`] = `
 <div>
   <div
-    class="sc-grXZZQ ipbQCL"
+    class="sc-grXZZQ fxOySf"
   >
     <svg
       aria-hidden="true"
@@ -21,8 +21,9 @@ exports[`Component - SearchInput renders component 1`] = `
       />
     </svg>
     <input
-      class="sc-bcPKhP cymCSF"
+      class="sc-bcPKhP kbscyV"
       role="search-input"
+      value=""
     />
   </div>
 </div>

@@ -63,7 +63,7 @@ const MoviePage: FunctionComponent = () => {
   const Back = styled(CustomLink)`
     font-size: 48px;
     margin-bottom: 24px;
-    color: #ffbf00;
+    color: ${({ theme }) => theme.colors.goldenYellow};
   `;
 
   let releaseYear = 0;
@@ -86,12 +86,10 @@ const MoviePage: FunctionComponent = () => {
           <Content>
             <Title size="40px">{movie.title}</Title>
             <Ratings rating={Number(movie.voteAverage) / 2} />
-            <Text size="24px">{releaseYear || "-"}</Text>
+            <Text size="medium">{releaseYear || "-"}</Text>
             <Genres genres={movie.genres} />
             <VoteCount count={movie.voteCount} />
-            <Text margin="16px 0" size="16px">
-              {movie.overview}
-            </Text>
+            <Text margin="16px 0">{movie.overview}</Text>
           </Content>
         </Container>
       ) : (

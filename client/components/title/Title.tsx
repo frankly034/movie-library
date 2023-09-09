@@ -9,7 +9,7 @@ type TitleProps = {
 };
 
 const Title = styled.h1<TitleProps>`
-  color: ${(props) => props.color || "#f9f9f9"};
+  color: ${(props) => props.color || props.theme.palette.foregroundSecondary};
   font-size: ${(props) => props.size || "16px"};
   ${(props) => props.margin && `margin: ${props.margin}`}
 `;

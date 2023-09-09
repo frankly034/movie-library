@@ -12,7 +12,7 @@ export const DisplayContainer = styled.div`
   font-size: 48px;
   align-items: center;
   width: 100%;
-  gap: 16px;
+  gap: ${({ theme }) => theme.spacing.lg};
   justify-content: center;
   height: 50vh;
 `;
@@ -21,7 +21,7 @@ const Loading: FunctionComponent = () => {
   return (
     <DisplayContainer>
       <FontAwesomeIcon icon={faSpinner} spin />
-      <Text size="48px">Loading...</Text>
+      <Text size="large">Loading...</Text>
     </DisplayContainer>
   );
 };

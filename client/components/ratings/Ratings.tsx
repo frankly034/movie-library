@@ -10,15 +10,15 @@ interface RatingsProps {
 }
 
 const Container = styled.div`
-  margin-bottom: 16px;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
 `;
 
 const GoldStar = styled.span`
-  color: #ffbf00;
+  color: ${({ theme }) => theme.colors.goldenYellow};
 `;
 
 const GreyStar = styled.span`
-  color: #6c6c6c;
+  color: ${({ theme }) => theme.colors.mediumGray};
 `;
 
 const Ratings: FunctionComponent<RatingsProps> = ({ rating }) => {

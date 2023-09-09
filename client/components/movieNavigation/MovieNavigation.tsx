@@ -17,11 +17,11 @@ interface MovieNavigationProps {
 }
 
 const Icon = styled(FontAwesomeIcon)`
-  color: #f9f9f9;
+  color: ${({ theme }) => theme.palette.foregroundSecondary};
   font-size: 36px;
 
   &:hover {
-    color: #ffbf00;
+    color: ${({ theme }) => theme.colors.goldenYellow};
   }
 `;
 
@@ -49,7 +49,10 @@ const MovieNavigation: FunctionComponent<MovieNavigationProps> = ({
         <CustomLink href="#" onClick={onPreviousPage}>
           <Icon icon={faSquareCaretLeft} />
         </CustomLink>
-        <Text color="#ffbf00">{`${currentPage} of ${totalPages}`}</Text>
+        <Text
+          color="#ffbf00"
+          size="small"
+        >{`${currentPage} of ${totalPages}`}</Text>
         <CustomLink href="#" onClick={onNextPage}>
           <Icon icon={faSquareCaretRight} />
         </CustomLink>
