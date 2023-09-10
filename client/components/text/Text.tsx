@@ -10,15 +10,15 @@ const Size = {
 };
 
 interface TextProps {
-  readonly color?: string;
-  readonly size?: keyof typeof Size;
-  readonly margin?: string;
+  $color?: string;
+  $size?: keyof typeof Size;
+  $margin?: string;
 }
 
 const Text = styled.p<TextProps>`
-  color: ${(props) => props.color || "#f9f9f9"};
-  font-size: ${(props) => props.size || Size.normal};
-  ${(props) => props.margin && `margin: ${props.margin}`};
+  color: ${(props) => props.$color || props.theme.palette.foregroundSecondary};
+  font-size: ${(props) => props.$size || Size.normal};
+  ${(props) => props.$margin && `margin: ${props.$margin}`};
   line-height: 1.6;
 `;
 

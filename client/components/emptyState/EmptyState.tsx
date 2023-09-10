@@ -17,7 +17,7 @@ const Loading: FunctionComponent = () => {
       <Container>
         <FontAwesomeIcon icon={faBattery0} />
       </Container>
-      <Text size="large">Nothing to show here...</Text>
+      <Text $size="large">Nothing to show here...</Text>
     </DisplayContainer>
   );
 };

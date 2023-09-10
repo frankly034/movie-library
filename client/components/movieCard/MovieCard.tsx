@@ -42,8 +42,9 @@ const MovieCard: FunctionComponent<MovieCardProps> = ({
         style={{
           objectFit: "cover",
         }}
+        priority
       />
-      <Title size="24px" margin="16px 0 8px">
+      <Title $size="24px" $margin="16px 0 8px">
         {title}
       </Title>
       <Ratings rating={rating} />

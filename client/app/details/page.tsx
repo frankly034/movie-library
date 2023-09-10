@@ -4,7 +4,6 @@ import { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
-import { styled } from "styled-components";
 
 import { RootState } from "../../redux/store";
 import {
@@ -18,53 +17,12 @@ import {
   Title,
   VoteCount,
 } from "../../components";
-
-interface ContainerProps {
-  backdropPath: string;
-}
+import { Back, Container, Content, Row } from "./components";
 
 const MoviePage: FunctionComponent = () => {
   const { selectedMovie: movie } = useSelector(
     (state: RootState) => state.filter
   );
-
-  const Container = styled.div<ContainerProps>`
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(to left, transparent -50%, #000),
-      url(${(props) => props.backdropPath});
-    height: 90vh;
-    padding: 16px 32px;
-    margin: -10px -32px -64px;
-  `;
-
-  const Content = styled.div`
-    display: flex;
-    width: 40%;
-    flex-direction: column;
-
-    @media only screen and (max-width: 767px) {
-      width: 100%;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1180px) {
-      width: 70%;
-    }
-
-    @media only screen and (min-width: 768px) and (max-width: 1180px) and (orientation: landscape) {
-      width: 70%;
-    }
-  `;
-
-  const Row = styled.div`
-    display: flex;
-  `;
-
-  const Back = styled(CustomLink)`
-    font-size: 48px;
-    margin-bottom: 24px;
-    color: ${({ theme }) => theme.colors.goldenYellow};
-  `;
 
   let releaseYear = 0;
 
@@ -77,19 +35,19 @@ const MoviePage: FunctionComponent = () => {
     <PageWrapper>
       <Heading showSearchButton={false} />
       {movie ? (
-        <Container backdropPath={movie.backdropPath || ""}>
+        <Container $backdropPath={movie.backdropPath || ""}>
           <Row>
             <Back href="/">
               <FontAwesomeIcon icon={faArrowLeftLong} />
             </Back>
           </Row>
           <Content>
-            <Title size="40px">{movie.title}</Title>
+            <Title $size="40px">{movie.title}</Title>
             <Ratings rating={Number(movie.voteAverage) / 2} />
-            <Text size="medium">{releaseYear || "-"}</Text>
+            <Text $size="medium">{releaseYear || "-"}</Text>
             <Genres genres={movie.genres} />
             <VoteCount count={movie.voteCount} />
-            <Text margin="16px 0">{movie.overview}</Text>
+            <Text $margin="16px 0">{movie.overview}</Text>
           </Content>
         </Container>
       ) : (
