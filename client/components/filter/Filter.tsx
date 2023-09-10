@@ -1,15 +1,16 @@
 "use client";
 
-import Genre from "@/models/genre";
-import { FunctionComponent } from "react";
+import { Ref, forwardRef } from "react";
 import styled from "styled-components";
 
+import Genre from "../../models/genre";
 import { ClickableTag, SearchInput } from "..";
 
 type FilterProps = {
   genres?: Genre[];
   onTagClick: (tag: Genre) => void;
   onSearch: (search: string) => void;
+  forwardRef?: Ref<HTMLInputElement>;
 };
 
 const Container = styled.div`
@@ -24,11 +25,9 @@ const TagsContainer = styled.div`
   overflow-y: scroll;
 `;
 
-const Filter: FunctionComponent<FilterProps> = ({
-  genres = [],
-  onSearch,
-  onTagClick,
-}) => {
+const Filter = forwardRef<HTMLInputElement, FilterProps>((props, ref) => {
+  const { forwardRef, genres = [], onSearch, onTagClick } = props;
+
   return (
     <Container>
       <TagsContainer>
@@ -38,9 +37,14 @@ const Filter: FunctionComponent<FilterProps> = ({
           </ClickableTag>
         ))}
       </TagsContainer>
-      <SearchInput onSearch={onSearch} placeholder="Search movies by title" />
+      <SearchInput
+        name="search-input"
+        onSearch={onSearch}
+        placeholder="Search movies by title"
+        forwardRef={forwardRef || ref}
+      />
     </Container>
   );
-};
+});
 
 export default Filter;

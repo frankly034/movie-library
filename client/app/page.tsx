@@ -1,6 +1,6 @@
 "use client";
 
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -32,13 +32,20 @@ import MovieNavigation from "../components/movieNavigation";
 const Home: FunctionComponent = () => {
   const dispatch = useDispatch();
 
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   const { search, selectedGenres, showFilter, totalPages, currentPage } =
     useSelector((state: RootState) => state.filter);
 
   const handleAddGenre = (genre: Genre) => dispatch(addGenre(genre));
   const handleRemoveGenre = (genre: Genre) => dispatch(removeGenre(genre.id));
   const handleSearch = (search: string) => dispatch(setSearch(search));
-  const handleClearSearch = () => dispatch(setSearch(""));
+  const handleClearSearch = () => {
+    if (inputRef.current?.value) {
+      inputRef.current.value = "";
+    }
+    return dispatch(setSearch(""));
+  };
   const handleToggleShowFilter = () => dispatch(toggleShowFilter());
   const handleSelectMovie = (movie: Movie) => dispatch(setSelectedMovie(movie));
   const handleSetNextPage = () => dispatch(nextPage());
@@ -64,6 +71,13 @@ const Home: FunctionComponent = () => {
 
   const showLoading = isFetching || isLoading;
 
+  // transfers focus to the search input after its mounted
+  useEffect(() => {
+    if (showFilter && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [showFilter]);
+
   return (
     <PageWrapper>
       <Heading showFilter={handleToggleShowFilter} />
@@ -78,6 +92,7 @@ const Home: FunctionComponent = () => {
           genres={paginatedGenres?.data.items}
           onSearch={handleSearch}
           onTagClick={handleAddGenre}
+          forwardRef={inputRef}
         />
       )}
       {showFilterBy && (

@@ -17,7 +17,7 @@ interface TextProps {
 
 const Text = styled.p<TextProps>`
   color: ${(props) => props.$color || props.theme.palette.foregroundSecondary};
-  font-size: ${(props) => props.$size || Size.normal};
+  font-size: ${(props) => (props.$size ? Size[props.$size] : Size.normal)};
   ${(props) => props.$margin && `margin: ${props.$margin}`};
   line-height: 1.6;
 `;
