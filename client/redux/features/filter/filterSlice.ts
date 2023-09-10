@@ -62,10 +62,18 @@ export const filterSlice = createSlice({
       state.selectedMovie = action.payload;
     },
     nextPage: (state) => {
-      state.totalPages !== state.currentPage && state.currentPage++;
+      if (state.currentPage === state.totalPages) {
+        state.currentPage = 1;
+        return;
+      }
+      state.currentPage++;
     },
     previousPage: (state) => {
-      state.currentPage !== 1 && state.currentPage--;
+      if (state.currentPage === 1 && state.totalPages > 1) {
+        state.currentPage = state.totalPages;
+        return;
+      }
+      state.currentPage--;
     },
   },
   extraReducers: (builder) => {
