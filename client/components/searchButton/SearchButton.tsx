@@ -11,20 +11,20 @@ interface SearchButtonProps {
 
 const Container = styled.button<SearchButtonProps>`
   font-size: 16px;
-  color: #fff;
-  background-color: #202020;
-  border: solid 1px #6c6c6c;
-  border-radius: 4px;
-  padding: 8px;
+  color: ${({ theme }) => theme.palette.foreground};
+  background-color: ${({ theme }) => theme.palette.panelBackground};
+  border: solid 1px ${({ theme }) => theme.colors.mediumGray};
+  border-radius: ${({ theme }) => theme.variables.borderRadius};
+  padding: ${({ theme }) => theme.spacing.md};
 
   transition: all;
-  transition-duration: 0.5s;
-  transition-delay: 0.1s;
+  transition-duration: ${({ theme }) => theme.variables.transitionDuration};
+  transition-delay: ${({ theme }) => theme.variables.transitionDelay};
 
   &:hover {
-    transform: scale(1.05);
-    background-color: #f9f9f9;
-    color: #202020;
+    transform: scale(${({ theme }) => theme.variables.scale});
+    background-color: ${({ theme }) => theme.palette.panelSecondaryBackground};
+    color: ${({ theme }) => theme.palette.foregroundSecondaryContrast};
     cursor: pointer;
   }
 `;

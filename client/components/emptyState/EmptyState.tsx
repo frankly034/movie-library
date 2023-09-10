@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { DisplayContainer, Text } from "..";
 
 const Container = styled.div`
-  color: #c32020;
+  color: ${({ theme }) => theme.palette.failureColor};
 `;
 
 const Loading: FunctionComponent = () => {
@@ -17,7 +17,7 @@ const Loading: FunctionComponent = () => {
       <Container>
         <FontAwesomeIcon icon={faBattery0} />
       </Container>
-      <Text size="48px">Nothing to show here...</Text>
+      <Text size="large">Nothing to show here...</Text>
     </DisplayContainer>
   );
 };

@@ -8,11 +8,11 @@ const CustomLink = styled(Link)<ComponentProps<typeof Link>>`
   text-decoration: none;
 
   transition: all;
-  transition-duration: 0.5s;
-  transition-delay: 0.1s;
+  transition-duration: ${({ theme }) => theme.variables.transitionDuration};
+  transition-delay: ${({ theme }) => theme.variables.transitionDelay};
 
   &:hover {
-    transform: scale(1.05);
+    transform: scale(${({ theme }) => theme.variables.scale});
     cursor: pointer;
   }
 `;

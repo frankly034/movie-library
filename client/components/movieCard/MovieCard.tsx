@@ -13,16 +13,16 @@ type MovieCardProps = {
 
 const Container = styled.div`
   width: 300px;
-  border: 1px solid #6c6c6c;
-  padding: 8px;
-  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.colors.mediumGray};
+  padding: ${({ theme }) => theme.spacing.md};
+  border-radius: ${({ theme }) => theme.variables.borderRadius};
 
   transition: all;
-  transition-duration: 0.5s;
-  transition-delay: 0.1s;
+  transition-duration: ${({ theme }) => theme.variables.transitionDuration};
+  transition-delay: ${({ theme }) => theme.variables.transitionDelay};
 
   &:hover {
-    border-color: #ffbf00;
+    border-color: ${({ theme }) => theme.colors.goldenYellow};
   }
 `;
 

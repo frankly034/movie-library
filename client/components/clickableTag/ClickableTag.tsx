@@ -9,19 +9,19 @@ interface TagProps {
 const Tag = styled.button<TagProps>`
   font-size: 14px;
   color: #fff;
-  background-color: #202020;
-  border: solid 1px #6c6c6c;
-  border-radius: 4px;
+  background-color: ${({ theme }) => theme.palette.panelBackground};
+  border: solid 1px ${({ theme }) => theme.colors.mediumGray};
+  border-radius: ${({ theme }) => theme.variables.borderRadius};
   padding: 2px 8px;
   white-space: nowrap;
 
   transition: all;
-  transition-duration: 0.5s;
-  transition-delay: 0.1s;
+  transition-duration: ${({ theme }) => theme.variables.transitionDuration};
+  transition-delay: ${({ theme }) => theme.variables.transitionDelay};
 
   &:hover {
-    border-color: #ffbf00;
-    color: #ffbf00;
+    border-color: ${({ theme }) => theme.colors.goldenYellow};
+    color: ${({ theme }) => theme.colors.goldenYellow};
     cursor: pointer;
   }
 `;

@@ -2,11 +2,11 @@
 
 import { FunctionComponent } from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import Genre from "../../models/genre";
 import { ClickableTagWithCloseIcon, Text } from "..";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 type FilterByProps = {
   genres?: Genre[];
@@ -17,7 +17,7 @@ type FilterByProps = {
 
 const Container = styled.div`
   display: flex;
-  gap: 8px;
+  gap: ${({ theme }) => theme.spacing.md};
   margin: 32px 0 8px;
 `;
 
@@ -29,7 +29,9 @@ const FilterBy: FunctionComponent<FilterByProps> = ({
 }) => {
   return (
     <Container>
-      <Text margin="0 8px 0 0">Filter: </Text>
+      <Text margin="0 8px 0 0" size="small">
+        Filter:{" "}
+      </Text>
       {search && (
         <ClickableTagWithCloseIcon
           addonBefore={<FontAwesomeIcon icon={faSearch} />}

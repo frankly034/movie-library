@@ -14,8 +14,8 @@ interface HeadingProps {
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid #2c2c2c;
-  padding-bottom: 8px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.darkGray};
+  padding-bottom: ${({ theme }) => theme.spacing.md};
 `;
 
 const Heading: FunctionComponent<HeadingProps> = ({
