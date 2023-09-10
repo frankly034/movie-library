@@ -10,7 +10,7 @@ interface RatingsProps {
 }
 
 const Container = styled.div`
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  margin: 8px 0 16px;
 `;
 
 const GoldStar = styled.span`

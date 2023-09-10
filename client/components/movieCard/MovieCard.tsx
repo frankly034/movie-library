@@ -5,7 +5,7 @@ import Image from "next/image";
 import { FunctionComponent } from "react";
 
 import Movie from "../../models/movie";
-import { Genres, Ratings, Title } from "..";
+import { Genres, Ratings } from "..";
 
 type MovieCardProps = {
   movie: Movie;
@@ -44,9 +44,6 @@ const MovieCard: FunctionComponent<MovieCardProps> = ({
         }}
         priority
       />
-      <Title $size="24px" $margin="16px 0 8px">
-        {title}
-      </Title>
       <Ratings rating={rating} />
       <Genres genres={genres} maxCount={3} />
     </Container>
