@@ -47,11 +47,11 @@ const MovieNavigation: FunctionComponent<MovieNavigationProps> = ({
     <Container>
       <Row>
         <CustomLink href="#" onClick={onPreviousPage}>
-          <Icon icon={faSquareCaretLeft} />
+          {totalPages !== 1 && <Icon icon={faSquareCaretLeft} />}
         </CustomLink>
         <Text color="#ffbf00">{`${currentPage} of ${totalPages}`}</Text>
         <CustomLink href="#" onClick={onNextPage}>
-          <Icon icon={faSquareCaretRight} />
+          {totalPages !== 1 && <Icon icon={faSquareCaretRight} />}
         </CustomLink>
       </Row>
     </Container>
