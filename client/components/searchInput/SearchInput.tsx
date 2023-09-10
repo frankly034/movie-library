@@ -4,15 +4,13 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FunctionComponent } from "react";
 import styled from "styled-components";
+import { useDebouncedCallback } from "use-debounce";
 
-interface SearchInputProps {
-  name?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  placeholderText?: string;
-  value: string;
+interface SearchInputProps extends React.HTMLProps<HTMLInputElement> {
+  onSearch: (search: string) => void;
 }
 
-const Input = styled.input<SearchInputProps>`
+const Input = styled.input`
   all: unset;
   width: 100%;
   padding: ${({ theme }) => theme.spacing.sm};
@@ -28,19 +26,21 @@ const Container = styled.div`
 
 const SearchInput: FunctionComponent<SearchInputProps> = ({
   name,
-  onChange,
-  placeholderText,
-  value,
+  onSearch,
+  placeholder,
 }) => {
+  const debounced = useDebouncedCallback((value) => {
+    onSearch(value);
+  }, 1000);
+
   return (
     <Container>
       <FontAwesomeIcon icon={faSearch} />
       <Input
         role="search-input"
         name={name}
-        onChange={onChange}
-        placeholder={placeholderText}
-        value={value}
+        onChange={(e) => debounced(e.target.value)}
+        placeholder={placeholder}
       />
     </Container>
   );

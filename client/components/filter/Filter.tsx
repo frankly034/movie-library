@@ -10,7 +10,6 @@ type FilterProps = {
   genres?: Genre[];
   onTagClick: (tag: Genre) => void;
   onSearch: (search: string) => void;
-  search: string;
 };
 
 const Container = styled.div`
@@ -25,12 +24,10 @@ const TagsContainer = styled.div`
   overflow-y: scroll;
 `;
 
-// Todo: add debounce on search input
 const Filter: FunctionComponent<FilterProps> = ({
   genres = [],
   onSearch,
   onTagClick,
-  search = "",
 }) => {
   return (
     <Container>
@@ -41,11 +38,7 @@ const Filter: FunctionComponent<FilterProps> = ({
           </ClickableTag>
         ))}
       </TagsContainer>
-      <SearchInput
-        onChange={(e) => onSearch(e.target.value)}
-        placeholderText="Search movies by title"
-        value={search}
-      />
+      <SearchInput onSearch={onSearch} placeholder="Search movies by title" />
     </Container>
   );
 };

@@ -23,7 +23,6 @@ exports[`Component - SearchInput renders component 1`] = `
     <input
       class="sc-bcPKhP kbscyV"
       role="search-input"
-      value=""
     />
   </div>
 </div>
